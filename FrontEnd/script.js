@@ -51,8 +51,15 @@ function validateUploadForm(event) {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        // console.log("Response status:", response.status); // Remove for production
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
+        // console.log("Response data:", data); // Remove for production
         // Hide loading state
         hideLoadingState();
 
@@ -68,8 +75,7 @@ function validateUploadForm(event) {
           // Display face shape info using IDs
           const faceShapeInfo = document.getElementById("face-shape");
           const confidenceInfo = document.getElementById("confidence");
-          const recommendationsInfo =
-            (faceShapeInfo.textContent = `Face Shape: ${data.face_shape}`);
+          faceShapeInfo.textContent = `Face Shape: ${data.face_shape}`;
           confidenceInfo.textContent = `Confidence: ${(
             data.confidence * 100
           ).toFixed(1)}%`;
@@ -79,7 +85,7 @@ function validateUploadForm(event) {
           // Clear the file input
           fileInput.value = "";
         } else {
-          alert(data.message);
+          alert(`Backend Error: ${data.message}`);
           // Don't clear file input on error - user can fix and retry
         }
       })
@@ -87,6 +93,7 @@ function validateUploadForm(event) {
         // Hide loading state on error
         hideLoadingState();
         console.error("Upload error:", error);
+        // console.error("Error details:", error.message); // Remove for production
         alert("Error uploading file. Please try again.");
       });
   }
