@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AICuts</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Gray Header Bar -->
+    <header class="top-bar">
+      <div class="top-bar-content">
+        <span>AICuts - AI-Powered Haircut Recommendations</span>
+        <nav class="top-nav">
+          <a href="index.html">Home</a>
+          <a href="#aboutSection">About</a>
+          <a href="#contactSection">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <div>
+      <div class="content-container" id="aboutSection">
+        <h1 class="blue-text">Welcome to AICuts</h1>
+        <p>
+          <span class="blue-text">AICuts</span> is your go-to platform for
+          AI-powered haircut recommendations. Discover the perfect hairstyle
+          tailored to your unique features and preferences. We used a customed
+          trained AI model to analyze your face and suggest the best haircut for
+          you.
+        </p>
+      </div>
+    </div>
+
+    <div class="upload">
+      <form>
+        <div class="upload-content">
+          <div class="upload-icon">📷</div>
+          <h3>Upload Your Photo</h3>
+          <p>Click here</p>
+          <input
+            type="file"
+            id="photo-upload"
+            accept="image/*"
+            class="file-input"
+            name="photo"
+            required
+          />
+          <label for="photo-upload" class="upload-button">Choose File</label>
+
+          <div id="file-info" class="file-info" style="display: none">
+            <span id="file-name"></span>
+            <span id="file-size"></span>
+            <button type="button" id="clear-file" class="clear-file-btn">
+              ✕
+            </button>
+          </div>
+
+          <button type="submit" class="analyze-button">
+            <span class="button-text">Analyze Photo</span>
+            <span class="button-spinner" style="display: none">
+              <span class="spinner"></span>
+              Processing...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <h4 class="TitleResult">Results</h4>
+
+    <!-- Hidden by default, shown after upload -->
+    <section id="results-section" style="display: none">
+      <div class="results-container">
+        <div class="images-display">
+          <!-- Face analysis flip card -->
+          <div class="flip-card" id="result-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  id="result-image"
+                  src=""
+                  alt="Your face"
+                  style="width: 300px; height: 300px"
+                />
+                <p>Your Face</p>
+              </div>
+              <div class="flip-card-back">
+                <h3>Analysis Results</h3>
+                <p id="face-shape">Face Shape: Loading...</p>
+                <p id="confidence">Confidence: Loading...</p>
+                <p id="recommendations">Recommendations: Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-info">
+          <!-- Additional analysis info can go here -->
+          <h3>Analysis Details</h3>
+          <div class="square" style="display: none"> 
+            <p>Square Face:</p>
+            <p> Square faces are strong and angular, with a broad forehead and jaw. Haircuts like crew cuts, fades, and pompadours work well because they highlight the face’s structure while slightly softening the edges.</p>
+          </div>
+
+
+          <div class="round" style="display: none">
+            <p>Round Face:</p>
+
+            <p> A round face is soft and circular, with full cheeks and little definition in the jaw. To add structure, styles such as pompadours, high fades, and side parts create height and sharpness, making the face appear more defined.</p>
+        </div>
+
+        <div class="ovale" style="display: none">
+          <p>Oval Face:</p>
+          <p> An oval face has balanced proportions with a slightly rounded jawline. It’s the most versatile shape, meaning almost any haircut works well. Styles like quiffs, buzz cuts, and buzz cuts all complement the natural symmetry of this face shape.</p>
+        </div>
+
+        <div class="rectangular" style="display: none" >
+          <p>Rectangle Face:</p>
+          <p> A rectangle face is longer than it is wide, with straight sides and a defined jaw. To avoid making the face look even longer, styles like fringe, textured crops, or side parts help add width and balance out the length.</p>
+        </div>
+
+        <p>CAUTION</p>
+        <p>
+Before trying any of the suggested haircuts, we recommend looking up real-life examples online to see how they appear on actual people. These visuals are generated by a model trained on generic face shapes and may not account for unique or less common facial features. Always consult with a professional barber or stylist before making any major changes to your haircut.</p>
+
+<p>Any of the photos uploaded aren't saved and instantly deleted.</p>
+
+
+        
+
+        <div class="style-recommendations">
+          <!-- Hairstyle suggestions based on face shape -->
+
+          <div class="flip-card" id="Buzz" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                 <img src="images/Buzz.png" alt="Buzz Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Buzz Cut</p>
+                <ul>
+                  <li>Top & Sides: Uniform short length (clipper all over)</li>
+                  <li>Style: Clean, simple, and very low maintenance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="Fade" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Fade.png" alt="Fade Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Fade Cut</p>
+                <ul>  
+                  <li>Top: Short, gradually blended</li>
+                  <li>Sides: Skin or low length at the bottom, fading upward</li>
+                  <li>Style: Sharp and clean</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="CrewCut" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Crew Cut.png" alt="Crew Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Crew Cut</p>
+                <ul>
+                  <li>Top: Short and evenly trimmed</li>
+                  <li>Sides: Faded or tapered into the top</li>
+                  <li>Style: Neat, low-maintenance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="HighFade" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/High Fade.png" alt="High Fade Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>High Fade Cut</p>
+                <ul>
+                  <li>Top: Short to medium</li>
+                  <li>Sides: Fade starts high near the temples</li>
+                  <li>Style: Sharp contrast between top and sides</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="Fringe" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Fringe.png" alt="Fringe Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Fringe Cut</p>
+                <ul>
+                  <li>Top: Medium to long length</li>
+                  <li>Front: Hair falls forward over the forehead</li>
+                  <li>Sides: Short or faded, but not skin-tight</li>
+                  <li>Style: Straight or slightly textured fringe</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="Pompadour" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Pompadour.png" alt="Pompadour Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Pompadour Cut</p>
+                <ul>
+                  <li>Top: Long with volume, styled upward and back</li>
+                  <li>Sides: Short, can be faded or tapered</li>
+                  <li>Style: Bold and stylish</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="Quiff" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Quiff.png" alt="Quiff Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Quiff Cut</p>
+                <ul>
+                  <li>Top: Long at the front, shorter toward the back</li>
+                  <li>Style: Hair is brushed upward and slightly back</li>
+                  <li>Sides: Short or tapered</li>
+                  <li>Look: Voluminous and stylish</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="SidePart" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Side Part.png" alt="Side Part Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Side Part Cut</p>
+                <ul>
+                  <li>Top: Medium length, combed to the side</li>
+                  <li>Part: Defined side part</li>
+                  <li>Sides: Tapered or faded for a clean finish</li>
+                  <li>Style: Classic, formal</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="TexturedCrop" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Textured Crop.png" alt="Textured Crop Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Textured Crop Cut</p>
+                <ul>
+                  <li>Top: Short, messy, and choppy layers</li>
+                  <li>Fringe: Forward-facing and uneven</li>
+                  <li>Sides: Faded or tapered</li>
+                  <li>Style: Casual and edgy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" id="Waves" style="display: none">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Waves.png" alt="Waves Cut">
+              </div>
+              <div class="flip-card-back">
+                <p>Waves Cut</p>
+                <ul>
+                  <li>Top: Maintains natural 360 or ripple wave pattern</li>
+                  <li>Sides: Tapered or faded</li>
+                  <li>Style: Requires brushing and wave maintenance products</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <div class="contact" id="contactSection">
+      <div class="container">
+        <form action="/contact">
+          <h3>Contact Us</h3>
+          <label for="fname">First Name</label>
+          <input
+            type="text"
+            id="fname"
+            name="firstname"
+            placeholder="Your name.."
+          />
+
+          <label for="lname">Last Name</label>
+          <input
+            type="text"
+            id="lname"
+            name="lastname"
+            placeholder="Your last name.."
+          />
+
+          <label for="subject">Subject</label>
+          <textarea
+            id="subject"
+            name="subject"
+            placeholder="Write something.."
+            style="height: 200px"
+          ></textarea>
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
