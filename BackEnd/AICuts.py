@@ -20,7 +20,7 @@ import tempfile
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://steelwarden.github.io/AICuts/"])  # Replace with your actual GitHub Pages URL
 
 load_dotenv()
 
@@ -286,6 +286,6 @@ def handle_contact():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
