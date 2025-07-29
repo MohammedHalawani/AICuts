@@ -18,8 +18,9 @@ import tempfile
 
 
 app = Flask(__name__)
-CORS(app, origins=["https://steelwarden.github.io", "https://steelwarden.github.io/AICuts/", "https://steelwarden.github.io/AICuts"])  # Allow your GitHub Pages URLs
+from flask_cors import CORS
 
+CORS(app, origins=["http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost", "http://127.0.0.1", "https://steelwarden.github.io", "https://steelwarden.github.io/AICuts/", "https://steelwarden.github.io/AICuts"], supports_credentials=True)
 load_dotenv()
 
 # Security configuration
