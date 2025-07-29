@@ -6,9 +6,6 @@ const API_BASE_URL =
     : "http://127.0.0.1:5000"; // Production - NOW POINTS TO YOUR LOCAL BACKEND
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Existing contact form validation
-  const contactForm = document.querySelector('form[action="/contact"]');
-  contactForm.addEventListener("submit", validateContactForm);
 
   // NEW: Add upload form validation
   const uploadForm = document.querySelector(".upload form");
@@ -47,7 +44,7 @@ function validateUploadForm(event) {
     // API approach - no page reload
     const formData = new FormData();
     formData.append("file", file);
-    fetch(`${API_BASE_URL}/api/upload`, {
+    fetch(`${API_BASE_URL}/upload`, {
       method: "POST",
       body: formData,
     })
@@ -134,31 +131,7 @@ function validateContactForm(event) {
       subject: subject.trim(),
     };
 
-    fetch(`${API_BASE_URL}/api/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert(data.message);
-          // Clear the form only on success
-          document.getElementById("fname").value = "";
-          document.getElementById("lname").value = "";
-          document.getElementById("subject").value = "";
-        } else {
-          alert(data.message);
-          // Don't clear form on error - user can fix and retry
-        }
-      })
-      .catch((error) => {
-        alert("Error sending message. Please try again.");
-      });
-  }
-}
+    
 
 function displayOriginialImage(data) {
   const fileInput = document.getElementById("image");
