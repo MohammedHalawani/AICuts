@@ -3,7 +3,7 @@ const API_BASE_URL =
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:5000" // Local development
-    : "https://aicuts-4l3wr.ondigitalocean.app"; // Production - NOW POINTS TO YOUR LOCAL BACKEND
+    : "http://127.0.0.1:5000"; // Production - NOW POINTS TO YOUR LOCAL BACKEND
 
 document.addEventListener("DOMContentLoaded", function () {
   // NEW: Add upload form validation
