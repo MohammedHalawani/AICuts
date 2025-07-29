@@ -6,7 +6,6 @@ const API_BASE_URL =
     : "https://aicuts-4l3wr.ondigitalocean.app"; // Production - NOW POINTS TO YOUR LOCAL BACKEND
 
 document.addEventListener("DOMContentLoaded", function () {
-
   // NEW: Add upload form validation
   const uploadForm = document.querySelector(".upload form");
   uploadForm.addEventListener("submit", validateUploadForm);
@@ -95,43 +94,6 @@ function validateUploadForm(event) {
       });
   }
 }
-
-function validateContactForm(event) {
-  event.preventDefault();
-  const fname = document.getElementById("fname").value;
-  const lname = document.getElementById("lname").value;
-  const subject = document.getElementById("subject").value;
-
-  if (fname.trim() === "" || lname.trim() === "" || subject.trim() === "") {
-    alert("Please fill in all fields.");
-    return false;
-  } else if (fname.trim().length < 2) {
-    alert("First name must be at least 2 characters long.");
-    return false;
-  } else if (fname.trim().length > 50) {
-    alert("First name must be less than 50 characters long.");
-    return false;
-  } else if (lname.trim().length < 2) {
-    alert("Last name must be at least 2 characters long.");
-    return false;
-  } else if (lname.trim().length > 50) {
-    alert("Last name must be less than 50 characters long.");
-    return false;
-  } else if (subject.trim().length < 10) {
-    alert("Subject must be at least 10 characters long.");
-    return false;
-  } else if (subject.trim().length > 250) {
-    alert("Subject must be less than 250 characters long.");
-    return false;
-  } else {
-    // API approach - no page reload
-    const formData = {
-      firstname: fname.trim(),
-      lastname: lname.trim(),
-      subject: subject.trim(),
-    };
-
-    
 
 function displayOriginialImage(data) {
   const fileInput = document.getElementById("image");
